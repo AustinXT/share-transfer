@@ -12,7 +12,8 @@
         <div>
           <el-upload class="header-button"
             action="http://yapi.austinxt.com:3001/mock/8/postFile"
-            :file-list="fileList">
+            :file-list="fileList"
+            :on-success="getFormDoc">
             <el-button size="mini">导入</el-button>
           </el-upload>
           <el-button size="mini"
@@ -56,13 +57,10 @@
               <el-input size="small"
                 v-model="form.value6"></el-input>
             </el-form-item>
-            <el-form-item label="质权人：">
-              <el-input size="small"
-                v-model="form.value7"></el-input>
-            </el-form-item>
             <el-button type="primary"
               size="mini"
-              style="display: block; margin: auto;">保存</el-button>
+              style="display: block; margin: auto;"
+              @click="saveForm">保存</el-button>
           </el-form>
         </el-collapse-item>
         <el-collapse-item title="二、股东持股及股权质押情况"
@@ -111,10 +109,6 @@
             <el-table-column prop="value6"
               label="质押解除日期"
               min-width="80">
-            </el-table-column>
-            <el-table-column prop="value7"
-              label="质权人"
-              min-width="100">
             </el-table-column>
           </el-table>
         </el-collapse-item>
@@ -207,14 +201,15 @@ export default {
   data() {
     return {
       form: {},
-      tableData: [{
+      tableData: [],
+      formDoc: {
         value1: '李和鑫',
         value2: '10,000,000',
         value3: '7.75',
         value4: '限售',
         value5: '2018-5-31',
         value6: '2020-7-17',
-      }],
+      },
       rightPane: 0,
       fileList: [],
       validateCol1: [
@@ -278,6 +273,13 @@ export default {
       setTimeout(()=> {
         this.rightPane=1
       }, 300)
+    },
+    saveForm() {
+      this.tableData = [this.form]
+    },
+    getFormDoc() {
+      console.log()
+      this.form = this.formDoc
     }
   }
 }
@@ -289,7 +291,7 @@ export default {
   height: 100%;
 }
 .main .el-card {
-  box-shadow: none;
+  box-shadow: none !important;
   border-radius: 0;
   border: none;
   border-left: 1px solid rgba(247, 249, 251, 1);
