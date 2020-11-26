@@ -1,7 +1,13 @@
 <template>
   <div id="layout">
     <div id="sider">
-      <div id="logo"></div>
+      <div id="logo">
+        <img src="../assets/logo.jpg"
+          alt="logo"
+          style="height: 28px; margin: 7px 5px 6px 5px;">
+        <div style="color: #C4CACF;font-size: 28px;">|</div>
+        <div style="font-size: 24px; color: #3768A1;margin-left: 5px; font-family: 'PingFangSC-Semibold', 'PingFang SC Semibold', 'PingFang SC', sans-serif;">Memect Editor</div>
+      </div>
       <div id="tree">
         <el-card>
           <div slot="header">
@@ -9,10 +15,10 @@
             <i style="float: right;"
               class="el-icon-caret-left"></i>
           </div>
-          <el-input placeholder="输入关键字进行过滤"
+          <!-- <el-input placeholder="输入关键字进行过滤"
             v-model="filterText"
             size="small">
-          </el-input>
+          </el-input> -->
           <el-tree class="filter-tree"
             :data="docTree"
             :props="defaultProps"
@@ -145,7 +151,7 @@ export default {
           content: 'bulletin-edit'
         }, {
           id: '1203',
-          label: '1203股权司法拍卖、托管、设定信托'
+          label: '1203股权司法拍卖、托管、设定信托等其他类别公告'
         }, {
           id: '1204',
           label: '1204股权受限解除公告'
@@ -283,15 +289,22 @@ export default {
 #sider {
   width: 20%;
 }
+#logo {
+  display: flex;
+  align-items: center;
+  background: rgba(247, 249, 251, 1);
+}
 #content {
   width: 80%;
 }
-.el-card {
+#tree .el-card {
   box-shadow: none;
   border-radius: 0;
+  border: none;
 }
-.el-card .el-card__header {
+#tree .el-card .el-card__header {
   padding: 10px 10px 10px 20px;
+  background: rgba(235, 238, 242, 1);
 }
 .el-card .el-card__body {
   padding: 10px;
@@ -301,9 +314,14 @@ export default {
 }
 #content .el-tabs__header {
   margin-bottom: 0;
+  border-bottom: none;
+  height: 41px;
+  background: rgba(247, 249, 251, 1);
 }
 #content .el-tabs .el-tabs__nav {
   border-radius: 0px;
+  border: none;
+  background: #fff;
 }
 #content .el-tabs__content {
   height: 100%;

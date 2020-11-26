@@ -1,21 +1,21 @@
 <template>
   <div class="main">
     <el-card class="form">
-      <div slot="header">
+      <div slot="header"
+        class="header">
         <div>
-          <el-button type="text">信息填报</el-button>
+          <el-button type="text"
+            style="color: #3768A1">信息填报</el-button>
           <el-button type="text"
             disabled>XBRL</el-button>
         </div>
         <div>
-          <el-upload class="upload-demo"
-            action="https://austinxt.com"
+          <el-upload class="header-button"
+            action="http://yapi.austinxt.com:3001/mock/8/postFile"
             :file-list="fileList">
-            <el-button type="primary"
-              size="mini">导入</el-button>
+            <el-button size="mini">导入</el-button>
           </el-upload>
-          <el-button type="primary"
-            size="mini"
+          <el-button size="mini"
             @click="submitForm">提交</el-button>
         </div>
       </div>
@@ -30,7 +30,8 @@
           name="3">
           <el-form label-position="top"
             label-width="80px"
-            :model="form">
+            :model="form"
+            class="form3">
             <el-form-item label="解押股东解除质押情况：">
               <el-input size="small"
                 v-model="form.value1"></el-input>
@@ -60,7 +61,8 @@
                 v-model="form.value7"></el-input>
             </el-form-item>
             <el-button type="primary"
-              size="mini">保存</el-button>
+              size="mini"
+              style="display: block; margin: auto;">保存</el-button>
           </el-form>
         </el-collapse-item>
         <el-collapse-item title="二、股东持股及股权质押情况"
@@ -88,26 +90,31 @@
             style="width: 100%">
             <el-table-column prop="value1"
               label="股东名称"
-              width="100">
+              min-width="80">
             </el-table-column>
             <el-table-column prop="value2"
               label="解除质押股数（股）"
-              width="180">
+              min-width="100">
             </el-table-column>
             <el-table-column prop="value3"
-              label="解押股份占公司股份的比例">
+              label="解押股份占公司股份的比例"
+              min-width="80">
             </el-table-column>
             <el-table-column prop="value4"
-              label="股份性质">
+              label="股份性质"
+              min-width="60">
             </el-table-column>
             <el-table-column prop="value5"
-              label="质押开始日期">
+              label="质押开始日期"
+              min-width="80">
             </el-table-column>
             <el-table-column prop="value6"
-              label="质押解除日期">
+              label="质押解除日期"
+              min-width="80">
             </el-table-column>
             <el-table-column prop="value7"
-              label="质权人">
+              label="质权人"
+              min-width="100">
             </el-table-column>
           </el-table>
         </el-collapse-item>
@@ -200,7 +207,14 @@ export default {
   data() {
     return {
       form: {},
-      tableData: [],
+      tableData: [{
+        value1: '李和鑫',
+        value2: '10,000,000',
+        value3: '7.75',
+        value4: '限售',
+        value5: '2018-5-31',
+        value6: '2020-7-17',
+      }],
       rightPane: 0,
       fileList: [],
       validateCol1: [
@@ -277,24 +291,68 @@ export default {
 .main .el-card {
   box-shadow: none;
   border-radius: 0;
+  border: none;
+  border-left: 1px solid rgba(247, 249, 251, 1);
+  border-right: 1px solid rgba(247, 249, 251, 1);
 }
 .main .form .el-card__header {
   padding: 1px 10px 1px 20px;
+  border: none;
+  background: rgba(235, 238, 242, 1);
 }
-.main .form .el-card__header div {
+.main .form .el-card__header .header-button {
+  display: inline-block;
+  line-height: 40px;
+  margin-right: 5px;
+}
+.main .form .el-card__header .header-button .el-upload-list {
+  float: left;
+  margin-right: 20px;
+}
+.main .form .el-card__header .header {
   display: flex;
   justify-content: space-between;
 }
 .main .preview .el-card__header {
   padding: 10px 10px 10px 20px;
+  border: none;
+  background: rgba(235, 238, 242, 1);
 }
 .main .el-card .el-card__body {
-  padding: 10px;
+  padding: 0px;
+}
+.main .el-collapse-item__header {
+  height: 36px;
+  background: rgba(245, 247, 249, 1);
+}
+.form .el-collapse-item__header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.preview .el-collapse-item__header {
+  padding-left: 15px;
+}
+.form .el-collapse-item__arrow {
+  margin: 0 8px 0 8px;
+}
+.preview .el-collapse-item__arrow {
+  display: none;
 }
 .form {
-  width: 60%;
+  width: 55%;
+}
+.form3 {
+  margin: 15px 10px 0px 10px;
+}
+.form3 .el-form-item {
+  margin-bottom: 15px;
+}
+.form .el-form-item .el-form-item__label {
+  padding-bottom: 0px;
+  line-height: 24px;
 }
 .preview {
-  width: 40%;
+  width: 45%;
 }
 </style>
