@@ -356,11 +356,7 @@ export default {
   margin: 15px 10px 0px 10px;
 }
 .form3 .el-form-item {
-  margin-bottom: 15px;
-}
-.form .el-form-item .el-form-item__label {
-  padding-bottom: 0px;
-  line-height: 24px;
+  margin-bottom: 5px;
 }
 .preview {
   width: 45%;

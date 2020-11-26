@@ -20,7 +20,7 @@
             @click="submitForm">提交</el-button>
         </div>
       </div>
-      <el-collapse>
+      <el-collapse v-model="activeNames">
         <el-collapse-item title="基本信息"
           name="1">
         </el-collapse-item>
@@ -29,8 +29,8 @@
         </el-collapse-item>
         <el-collapse-item title="一、股东股权解除质押情况"
           name="3">
-          <el-form label-position="top"
-            label-width="80px"
+          <el-form label-position="right"
+            label-width="200px"
             :model="form"
             class="form3">
             <el-form-item label="解押股东解除质押情况：">
@@ -50,16 +50,22 @@
                 v-model="form.value4"></el-input>
             </el-form-item>
             <el-form-item label="质押开始日期：">
-              <el-input size="small"
-                v-model="form.value5"></el-input>
+              <el-date-picker size="small"
+                type="date"
+                v-model="form.value5"></el-date-picker>
             </el-form-item>
+            <div v-if="!validate"
+              style="color: red; margin-left: 200px;">质押日期大于解押日期</div>
             <el-form-item label="质押解除日期：">
-              <el-input size="small"
-                v-model="form.value6"></el-input>
+              <el-date-picker size="small"
+                type="date"
+                v-model="form.value6"></el-date-picker>
             </el-form-item>
+            <div v-if="!validate"
+              style="color: red; margin-left: 200px;">解押日期小于质押日期</div>
             <el-button type="primary"
               size="mini"
-              style="display: block; margin: auto;"
+              style="display: block; margin: 10px auto 0 auto;"
               @click="saveForm">保存</el-button>
           </el-form>
         </el-collapse-item>
@@ -74,7 +80,7 @@
     <el-card v-if="rightPane===0"
       class="preview"
       header="预览">
-      <el-collapse>
+      <el-collapse v-model="activeNames">
         <el-collapse-item title="基本信息"
           name="1">
         </el-collapse-item>
@@ -85,7 +91,8 @@
           name="3">
           <el-table :data="tableData"
             border
-            style="width: 100%">
+            style="width: 100%; margin: 5px;"
+            :header-cell-style="{'text-align': 'center'}">
             <el-table-column prop="value1"
               label="股东名称"
               min-width="80">
@@ -211,6 +218,8 @@ export default {
         value6: '2020-7-17',
       },
       rightPane: 0,
+      validate: true,
+      activeNames: [],
       fileList: [],
       validateCol1: [
         {
@@ -272,6 +281,7 @@ export default {
       this.rightPane=2
       setTimeout(()=> {
         this.rightPane=1
+        this.validate = false
       }, 300)
     },
     saveForm() {
@@ -348,11 +358,8 @@ export default {
   margin: 15px 10px 0px 10px;
 }
 .form3 .el-form-item {
-  margin-bottom: 15px;
-}
-.form .el-form-item .el-form-item__label {
-  padding-bottom: 0px;
-  line-height: 24px;
+  margin-bottom: 0px;
+  margin-top: 10px;
 }
 .preview {
   width: 45%;
