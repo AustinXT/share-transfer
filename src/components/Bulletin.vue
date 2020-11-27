@@ -7,7 +7,7 @@
           <el-button type="text"
             style="color: #3768A1">信息填报</el-button>
           <el-button type="text"
-            disabled>XBRL</el-button>
+            style="color: #C0C4CC">XBRL</el-button>
         </div>
         <div>
           <el-upload class="header-button"
@@ -63,10 +63,14 @@
             </el-form-item>
             <div v-if="!validate"
               style="color: red; margin-left: 200px;">解押日期小于质押日期</div>
-            <el-button type="primary"
-              size="mini"
-              style="display: block; margin: 10px auto 0 auto;"
-              @click="saveForm">保存</el-button>
+            <div style="margin: 10px auto 0 auto; text-align: center;">
+              <el-button type="primary"
+                size="mini"
+                @click="clearForm">重置</el-button>
+              <el-button type="primary"
+                size="mini"
+                @click="saveForm">保存</el-button>
+            </div>
           </el-form>
         </el-collapse-item>
         <el-collapse-item title="二、股东持股及股权质押情况"
@@ -78,8 +82,15 @@
       </el-collapse>
     </el-card>
     <el-card v-if="rightPane===0"
-      class="preview"
-      header="预览">
+      class="preview">
+      <div slot="header"
+        class="header">
+        <el-button type="text"
+          style="color: #3768A1">预览</el-button>
+        <el-button type="text"
+          style="color: #C0C4CC"
+          @click="rightPane=1">验证信息</el-button>
+      </div>
       <el-collapse v-model="activeNames">
         <el-collapse-item title="基本信息"
           name="1">
@@ -128,10 +139,19 @@
       </el-collapse>
     </el-card>
     <el-card v-else
-      class="preview"
-      header="验证信息">
+      class="preview">
+      <div slot="header"
+        class="header">
+        <el-button type="text"
+          style="color: #C0C4CC"
+          @click="rightPane=0">预览</el-button>
+        <el-button type="text"
+          style="color: #3768A1">验证信息</el-button>
+      </div>
       <el-table :data="validateCol1"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="基本要素验证（6）"
           min-width="350">
@@ -154,7 +174,9 @@
         </el-table-column>
       </el-table>
       <el-table :data="validateCol2"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="XBRL实例文档结构验证（6）"
           min-width="350">
@@ -177,7 +199,9 @@
         </el-table-column>
       </el-table>
       <el-table :data="validateCol3"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="分类标准计算关系验证（0）"
           min-width="350">
@@ -287,6 +311,10 @@ export default {
     saveForm() {
       this.tableData = [this.form]
     },
+    clearForm() {
+      this.form = {}
+      this.validate = true
+    },
     getFormDoc() {
       console.log()
       this.form = this.formDoc
@@ -295,73 +323,4 @@ export default {
 }
 </script>
 
-<style>
-.main {
-  display: flex;
-  height: 100%;
-}
-.main .el-card {
-  box-shadow: none !important;
-  border-radius: 0;
-  border: none;
-  border-left: 1px solid rgba(247, 249, 251, 1);
-  border-right: 1px solid rgba(247, 249, 251, 1);
-}
-.main .form .el-card__header {
-  padding: 1px 10px 1px 20px;
-  border: none;
-  background: rgba(235, 238, 242, 1);
-}
-.main .form .el-card__header .header-button {
-  display: inline-block;
-  line-height: 40px;
-  margin-right: 5px;
-}
-.main .form .el-card__header .header-button .el-upload-list {
-  float: left;
-  margin-right: 20px;
-}
-.main .form .el-card__header .header {
-  display: flex;
-  justify-content: space-between;
-}
-.main .preview .el-card__header {
-  padding: 10px 10px 10px 20px;
-  border: none;
-  background: rgba(235, 238, 242, 1);
-}
-.main .el-card .el-card__body {
-  padding: 0px;
-}
-.main .el-collapse-item__header {
-  height: 36px;
-  background: rgba(245, 247, 249, 1);
-}
-.form .el-collapse-item__header {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-}
-.preview .el-collapse-item__header {
-  padding-left: 15px;
-}
-.form .el-collapse-item__arrow {
-  margin: 0 8px 0 8px;
-}
-.preview .el-collapse-item__arrow {
-  display: none;
-}
-.form {
-  width: 55%;
-}
-.form3 {
-  margin: 15px 10px 0px 10px;
-}
-.form3 .el-form-item {
-  margin-bottom: 0px;
-  margin-top: 10px;
-}
-.preview {
-  width: 45%;
-}
-</style>
+<style type="text/css" src="./Bulletin.css"></style>

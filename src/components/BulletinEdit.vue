@@ -124,6 +124,7 @@
             <el-table-column prop="value7"
               label="质权人"
               min-width="150">
+            </el-table-column>
           </el-table>
         </el-collapse-item>
         <el-collapse-item title="二、股东持股及股权质押情况"
@@ -138,7 +139,8 @@
       class="preview"
       header="验证信息">
       <el-table :data="validateCol1"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini">
         <el-table-column prop="item"
           label="基本要素验证（6）"
           min-width="350">
@@ -161,7 +163,8 @@
         </el-table-column>
       </el-table>
       <el-table :data="validateCol2"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini">
         <el-table-column prop="item"
           label="XBRL实例文档结构验证（6）"
           min-width="350">
@@ -184,7 +187,8 @@
         </el-table-column>
       </el-table>
       <el-table :data="validateCol3"
-        style="width: 100%">
+        style="width: 100%"
+        size="mini">
         <el-table-column prop="item"
           label="分类标准计算关系验证（0）"
           min-width="350">
@@ -301,74 +305,4 @@ export default {
   }
 }
 </script>
-
-<style>
-.main {
-  display: flex;
-  height: 100%;
-}
-.main .el-card {
-  box-shadow: none !important;
-  border-radius: 0;
-  border: none;
-  border-left: 1px solid rgba(247, 249, 251, 1);
-  border-right: 1px solid rgba(247, 249, 251, 1);
-}
-.main .form .el-card__header {
-  padding: 1px 10px 1px 20px;
-  border: none;
-  background: rgba(235, 238, 242, 1);
-}
-.main .form .el-card__header .header-button {
-  display: inline-block;
-  line-height: 40px;
-  margin-right: 5px;
-}
-.main .form .el-card__header .header-button .el-upload-list {
-  float: left;
-  margin-right: 20px;
-}
-.main .form .el-card__header .header {
-  display: flex;
-  justify-content: space-between;
-}
-.main .preview .el-card__header {
-  padding: 10px 10px 10px 20px;
-  border: none;
-  background: rgba(235, 238, 242, 1);
-}
-.main .el-card .el-card__body {
-  padding: 0px;
-}
-.main .el-collapse-item__header {
-  height: 36px;
-  background: rgba(245, 247, 249, 1);
-}
-.form .el-collapse-item__header {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-}
-.preview .el-collapse-item__header {
-  padding-left: 15px;
-}
-.form .el-collapse-item__arrow {
-  margin: 0 8px 0 8px;
-}
-.preview .el-collapse-item__arrow {
-  display: none;
-}
-.form {
-  width: 55%;
-}
-.form3 {
-  margin: 15px 10px 0px 10px;
-}
-.form3 .el-form-item {
-  margin-bottom: 0px;
-  margin-top: 10px;
-}
-.preview {
-  width: 45%;
-}
-</style>
+<style type="text/css" src="./Bulletin.css"></style>
