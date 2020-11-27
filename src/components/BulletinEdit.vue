@@ -316,7 +316,7 @@ export default {
       setTimeout(()=> {
         this.rightPane=1
         this.validate = false
-      }, 300)
+      }, 1000)
     },
     saveForm() {
       this.tableData = [this.form]
@@ -326,8 +326,16 @@ export default {
       this.validate = true
     },
     getFormDoc() {
-      console.log()
-      this.form = this.formDoc
+      const loading = this.$loading({
+        lock: true,
+        text: '文档解析中',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      setTimeout(() => {
+        this.form = this.formDoc
+        loading.close();
+      }, 1000);
     }
   }
 }
