@@ -17,7 +17,8 @@
 .main .form .el-card__header .header-button {
   display: inline-block;
   line-height: 40px;
-  margin-right: -10px;
+  margin-right: 5px;
+  text-align: right;
 }
 .main .form .el-card__header .header-button .el-upload-list {
   float: left;

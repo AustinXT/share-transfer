@@ -52,6 +52,7 @@
             <el-form-item label="质押开始日期：">
               <el-date-picker size="small"
                 type="date"
+                value-format="yyyy-M-d"
                 v-model="form.value5"></el-date-picker>
             </el-form-item>
             <div v-if="!validate"
@@ -59,6 +60,7 @@
             <el-form-item label="质押解除日期：">
               <el-date-picker size="small"
                 type="date"
+                value-format="yyyy-M-d"
                 v-model="form.value6"></el-date-picker>
             </el-form-item>
             <div v-if="!validate"
