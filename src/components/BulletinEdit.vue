@@ -7,7 +7,7 @@
           <el-button type="text"
             style="color: #3768A1">信息填报</el-button>
           <el-button type="text"
-            disabled>XBRL</el-button>
+            style="color: #C0C4CC">XBRL</el-button>
         </div>
         <div>
           <el-upload class="header-button"
@@ -67,10 +67,14 @@
               <el-input size="small"
                 v-model="form.value7"></el-input>
             </el-form-item>
-            <el-button type="primary"
-              size="mini"
-              style="display: block; margin: 10px auto 0 auto;"
-              @click="saveForm">保存</el-button>
+            <div style="margin: 10px auto 0 auto; text-align: center;">
+              <el-button type="primary"
+                size="mini"
+                @click="clearForm">重置</el-button>
+              <el-button type="primary"
+                size="mini"
+                @click="saveForm">保存</el-button>
+            </div>
           </el-form>
         </el-collapse-item>
         <el-collapse-item title="二、股东持股及股权质押情况"
@@ -82,8 +86,15 @@
       </el-collapse>
     </el-card>
     <el-card v-if="rightPane===0"
-      class="preview"
-      header="预览">
+      class="preview">
+      <div slot="header"
+        class="header">
+        <el-button type="text"
+          style="color: #3768A1">预览</el-button>
+        <el-button type="text"
+          style="color: #C0C4CC"
+          @click="rightPane=1">验证信息</el-button>
+      </div>
       <el-collapse v-model="activeNames">
         <el-collapse-item title="基本信息"
           name="1">
@@ -136,11 +147,19 @@
       </el-collapse>
     </el-card>
     <el-card v-else
-      class="preview"
-      header="验证信息">
+      class="preview">
+      <div slot="header"
+        class="header">
+        <el-button type="text"
+          style="color: #C0C4CC"
+          @click="rightPane=0">预览</el-button>
+        <el-button type="text"
+          style="color: #3768A1">验证信息</el-button>
+      </div>
       <el-table :data="validateCol1"
         style="width: 100%"
-        size="mini">
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="基本要素验证（6）"
           min-width="350">
@@ -164,7 +183,8 @@
       </el-table>
       <el-table :data="validateCol2"
         style="width: 100%"
-        size="mini">
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="XBRL实例文档结构验证（6）"
           min-width="350">
@@ -188,7 +208,8 @@
       </el-table>
       <el-table :data="validateCol3"
         style="width: 100%"
-        size="mini">
+        size="mini"
+        :header-cell-style="{'background': '#f5f7f9'}">
         <el-table-column prop="item"
           label="分类标准计算关系验证（0）"
           min-width="350">
@@ -298,6 +319,10 @@ export default {
     saveForm() {
       this.tableData = [this.form]
     },
+    clearForm() {
+      this.form = {}
+      this.validate = true
+    },
     getFormDoc() {
       console.log()
       this.form = this.formDoc
@@ -305,4 +330,5 @@ export default {
   }
 }
 </script>
+
 <style type="text/css" src="./Bulletin.css"></style>
