@@ -33,7 +33,7 @@
             label-width="200px"
             :model="form"
             class="form3">
-            <el-form-item label="股东名称：">
+            <el-form-item label="解押股东名称：">
               <el-input size="small"
                 v-model="form.value1"></el-input>
             </el-form-item>
@@ -111,7 +111,7 @@
             style="width: 100%; margin: 5px;"
             :header-cell-style="{'text-align': 'center'}">
             <el-table-column prop="value1"
-              label="股东名称"
+              label="解押股东名称"
               min-width="80">
             </el-table-column>
             <el-table-column prop="value2"
