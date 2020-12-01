@@ -52,7 +52,7 @@
             <el-form-item label="质押开始日期：">
               <el-date-picker size="small"
                 type="date"
-                value-format="yyyy-M-d"
+                value-format="yyyy-MM-dd"
                 v-model="form.value5"></el-date-picker>
             </el-form-item>
             <div v-if="!validate"
@@ -60,7 +60,7 @@
             <el-form-item label="质押解除日期：">
               <el-date-picker size="small"
                 type="date"
-                value-format="yyyy-M-d"
+                value-format="yyyy-MM-dd"
                 v-model="form.value6"></el-date-picker>
             </el-form-item>
             <div v-if="!validate"
@@ -246,10 +246,10 @@ export default {
       formDoc: {
         value1: '李和鑫',
         value2: '10,000,000',
-        value3: '7.75',
+        value3: '7.75%',
         value4: '限售',
-        value5: '2018-5-31',
-        value6: '2020-7-17',
+        value5: '2019-07-17',
+        value6: '2019-05-31',
       },
       rightPane: 0,
       validate: true,
