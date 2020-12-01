@@ -33,7 +33,7 @@
             label-width="200px"
             :model="form"
             class="form3">
-            <el-form-item label="解押股东解除质押情况：">
+            <el-form-item label="股东名称：">
               <el-input size="small"
                 v-model="form.value1"></el-input>
             </el-form-item>
