@@ -288,6 +288,7 @@ export default {
 }
 #sider {
   width: 20%;
+  border-right: 1px solid rgba(247, 249, 251, 1);
 }
 #logo {
   display: flex;
